@@ -1,0 +1,17 @@
+behat/vendor/
+behat/bin/
+behat/behat
+behat/composer.lock
+
+seleniumPHP/vendor/
+seleniumPHP/composer.lock
+seleniumPHP/selenium-server-standalone-*.jar
+
+petclinic/target/
+petclinic/.settings/
+petclinic/.idea/
+petclinic/petclinic.iml
+
+selenium-petclinic/target/
+selenium-petclinic/.idea/
+selenium-petclinic/selenium-petclinic.iml
