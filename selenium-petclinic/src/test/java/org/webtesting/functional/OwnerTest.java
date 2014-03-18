@@ -95,5 +95,29 @@ public class OwnerTest {
         webDriver.quit();
     }
 
-    
+    @Test
+    public void shouldNotCreateOwnerByRequireFirstName() {
+        FirefoxDriver webDriver = new FirefoxDriver();
+
+        HomePage homePage = new HomePage(webDriver);
+        homePage.go();
+
+        Menu menu = new Menu(webDriver);
+        menu.clickOnFindOwners();
+
+        FindOwners findOwners = new FindOwners(webDriver);
+        findOwners.clickOnAddOwner();
+
+        EditOwner editOwner = new EditOwner(webDriver);
+        editOwner.fillLastName("My Last Name");
+        editOwner.fillAddress("My Address");
+        editOwner.fillCity("My City");
+        editOwner.fillTelephone("1234");
+        editOwner.submit();
+
+        Assert.assertEquals("New Owner", editOwner.title());
+        Assert.assertEquals("may not be empty", editOwner.formErrors());
+
+        webDriver.quit();
+    }
 }
