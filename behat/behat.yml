@@ -1,9 +1,10 @@
 default:
   extensions:
     Behat\MinkExtension\Extension:
-      base_url:  'http://YOUR-DOMAIN.com'
+      base_url:  'http://localhost:9966/petclinic'
       default_session: selenium2
       browser_name: 'firefox'
+      goutte: ~
       selenium2:
-        capabilities: { "browser": "firefox", "version": "14"}
+        capabilities: { "browser": "firefox", "version": "27"}
 

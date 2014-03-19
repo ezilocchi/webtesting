@@ -30,15 +30,4 @@ class FeatureContext extends BehatContext
       $this->useContext('gui', new GuiContext($parameters));
     }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }
