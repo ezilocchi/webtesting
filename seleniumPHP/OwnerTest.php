@@ -10,12 +10,6 @@ use Selenium\Client as SeleniumClient;
 $url = 'http://localhost:9966/petclinic';
 $browser = 'firefox';
 
-//$mink = new Mink(array(
-//      'selenium2' => new Session(new Selenium2Driver($browser, null, $url)),
-//    ));
-//
-//$mink->getSession('selenium2')->getPage()->findLink('Find owners')->click();
-
 $driver = new \Behat\Mink\Driver\Selenium2Driver( 'firefox', 'base_url');
 
 // init session:
@@ -26,3 +20,25 @@ $session->start();
 
 // open some page in browser:
 $session->visit($url);
+
+//navigate through some pages
+$page = $session->getPage();
+$page->findLink('Find owners')->click();
+$page->findLink('Add Owner')->click();
+
+//complete a form
+$page->findField('firstName')->setValue('My Name');
+$page->findField('lastName')->setValue('My Last Name');
+$page->findField('city')->setValue('My City');
+$page->findField('address')->setValue('My Address');
+$page->findField('telephone')->setValue('123456');
+
+$page->find('css', '.form-actions button')->click();
+
+$title = $page->find('css', 'div.container h2')->getText();
+
+//Assert::assertEquals('Owner Information', $title);
+
+//close browser
+$session->stop();
+
