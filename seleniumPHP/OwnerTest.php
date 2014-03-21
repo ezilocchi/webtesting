@@ -7,38 +7,46 @@ use Behat\Mink\Mink,
 
 use Selenium\Client as SeleniumClient;
 
-$url = 'http://localhost:9966/petclinic';
-$browser = 'firefox';
+/**
+*
+*/
+class OwnerTest extends PHPUnit_Framework_TestCase
+{
+    public function testSaveSuccessfull()
+    {
+        $url = 'http://localhost:9966/petclinic';
+        $browser = 'firefox';
 
-$driver = new \Behat\Mink\Driver\Selenium2Driver( 'firefox', 'base_url');
+        $driver = new \Behat\Mink\Driver\Selenium2Driver( 'firefox', 'base_url');
 
-// init session:
-$session = new \Behat\Mink\Session($driver);
+        // init session:
+        $session = new \Behat\Mink\Session($driver);
 
-// start session:
-$session->start();
+        // start session:
+        $session->start();
 
-// open some page in browser:
-$session->visit($url);
+        // open some page in browser:
+        $session->visit($url);
 
-//navigate through some pages
-$page = $session->getPage();
-$page->findLink('Find owners')->click();
-$page->findLink('Add Owner')->click();
+        //navigate through some pages
+        $page = $session->getPage();
+        $page->findLink('Find owners')->click();
+        $page->findLink('Add Owner')->click();
 
-//complete a form
-$page->findField('firstName')->setValue('My Name');
-$page->findField('lastName')->setValue('My Last Name');
-$page->findField('city')->setValue('My City');
-$page->findField('address')->setValue('My Address');
-$page->findField('telephone')->setValue('123456');
+        //complete a form
+        $page->findField('firstName')->setValue('My Name');
+        $page->findField('lastName')->setValue('My Last Name');
+        $page->findField('city')->setValue('My City');
+        $page->findField('address')->setValue('My Address');
+        $page->findField('telephone')->setValue('123456');
 
-$page->find('css', '.form-actions button')->click();
+        $page->find('css', '.form-actions button')->click();
 
-$title = $page->find('css', 'div.container h2')->getText();
+        $title = $page->find('css', 'div.container h2')->getText();
 
-//Assert::assertEquals('Owner Information', $title);
+        $this->assertEquals('Owner Information', $title);
 
-//close browser
-$session->stop();
-
+        //close browser
+        $session->stop();
+    }
+}
